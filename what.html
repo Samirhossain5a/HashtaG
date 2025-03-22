@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What? - HashtaG</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="background"></div>
+    
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fas fa-cube"></i>
+            <span>HASHTAG</span>
+        </div>
+        <div class="nav-center">
+            <div class="search-box">
+                <input type="text" placeholder="Search...">
+                <i class="fas fa-search"></i>
+            </div>
+        </div>
+        <div class="nav-items">
+            <a href="index.html">Home</a>
+            <a href="what.html" class="active">What?</a>
+            <a href="about.html">About</a>
+            <a href="#" id="contact-link">Contact</a>
+            <a href="#" class="login-icon">
+                <i class="fas fa-user"></i>
+            </a>
+        </div>
+    </nav>
+
+    <div class="what-page">
+        <div class="profile-section">
+            <div class="profile-image">
+                <img src="profile2.png" alt="Samir Hossain">
+            </div>
+            <h1 class="glitch-text">Samir Hossain</h1>
+            <p class="subtitle">EDITOR & Content Creator</p>
+            
+            <div class="social-links">
+                <a href="https://youtube.com" target="_blank" class="social-icon youtube">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="https://instagram.com" target="_blank" class="social-icon instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://facebook.com" target="_blank" class="social-icon facebook">
+                    <i class="fab fa-facebook"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="life-story">
+            <h2>My Journey</h2>
+            <div class="story-grid">
+                <div class="story-card">
+                    <div class="card-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3>Content Creation</h3>
+                    <p>Passionate about creating engaging content and sharing stories through video editing.</p>
+                </div>
+
+                <div class="story-card">
+                    <div class="card-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Education</h3>
+                    <p>Currently pursuing SSC, balancing academics with my creative endeavors.</p>
+                </div>
+
+                <div class="story-card">
+                    <div class="card-icon">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h3>Photography</h3>
+                    <p>Capturing moments and creating visual stories through photography and editing.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="social-stats">
+            <div class="stat-item">
+                <i class="fab fa-youtube"></i>
+                <span class="stat-number">Growing</span>
+                <span class="stat-label">YouTube Channel</span>
+            </div>
+            <div class="stat-item">
+                <i class="fab fa-instagram"></i>
+                <span class="stat-number">Active</span>
+                <span class="stat-label">Content Creator</span>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-heart"></i>
+                <span class="stat-number">Passionate</span>
+                <span class="stat-label">About Editing</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Modal -->
+    <div class="modal" id="contact-modal">
+        <div class="modal-content">
+            <span class="close-modal" id="close-contact">&times;</span>
+            <h2>Contact Information</h2>
+            <div class="contact-info">
+                <i class="fas fa-envelope"></i>
+                <p>samirhossain5a@gmail.com</p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2025 Hashtag . All rights reserved.</p>
+    </footer>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
