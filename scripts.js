@@ -1317,3 +1317,32 @@ if (hamburger && navItems) {
         navItems.classList.toggle('active');
     });
 }
+
+// Dashboard Number Animation
+function animateValue(element) {
+    const target = parseInt(element.getAttribute('data-value'));
+    const duration = 2000; // Animation duration in ms
+    const start = 0;
+    const end = target;
+    const range = end - start;
+    let startTimestamp = null;
+
+    const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        element.textContent = Math.floor(progress * range + start);
+        if (progress < 1) {
+            window.requestAnimationFrame(step);
+        } else {
+            element.textContent = target.toLocaleString();
+        }
+    };
+
+    window.requestAnimationFrame(step);
+}
+
+// Animate dashboard values when page loads
+document.addEventListener('DOMContentLoaded', () => {
+    const statValues = document.querySelectorAll('.stat-value[data-value]');
+    statValues.forEach(animateValue);
+});

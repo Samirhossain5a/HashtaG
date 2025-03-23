@@ -10,26 +10,38 @@
 <body>
     <div class="background"></div>
     
-    <nav class="navbar">
-        <div class="logo">
-            <i class="fas fa-cube"></i>
-            <span><b>HASHTAG</b></span>
-        </div>
-        <div class="nav-center">
-            <div class="search-box">
-                <input type="text" placeholder="Search...">
-                <i class="fas fa-search"></i>
+    <nav class="navbar dashboard-navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <i class="fas fa-cube"></i>
+                    <span>HASHTAG</span>
+                </a>
             </div>
-        </div>
-        <div class="nav-items">
-            <a href="index.html">Home</a>
-            <a href="what.html">What?</a>
-            <a href="about.html">About</a>
-            <a href="#" id="contact-link">Contact</a>
-            <div class="user-menu">
+            
+            <div class="nav-items">
+                <a href="dashboard.html" class="active">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="what.html">
+                    <i class="fas fa-question-circle"></i>
+                    <span>What?</span>
+                </a>
+                <a href="about.html">
+                    <i class="fas fa-info-circle"></i>
+                    <span>About</span>
+                </a>
+                <a href="#" id="contact-link">
+                    <i class="fas fa-envelope"></i>
+                    <span>Contact</span>
+                </a>
+            </div>
+            
+            <div class="user-section">
                 <button class="user-menu-btn">
-                    <img src="profile2.png" alt="Profile" class="user-avatar">
-                    <span class="user-name">Welcome</span>
+                    <img src="02.png" alt="Profile" class="user-avatar">
+                    <span class="user-name">Samir Hossain</span>
                     <i class="fas fa-chevron-down"></i>
                 </button>
                 <div class="user-dropdown">
@@ -47,7 +59,7 @@
                         <span class="notification-badge">3</span>
                     </a>
                     <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item logout-btn">
+                    <a href="login.html" class="dropdown-item logout-btn">
                         <i class="fas fa-sign-out-alt"></i>
                         Logout
                     </a>
@@ -70,16 +82,37 @@
                 </div>
                 <div class="card-content">
                     <div class="stat-item">
-                        <span class="stat-value">1,234</span>
+                        <span class="stat-value" data-value="1234">0</span>
                         <span class="stat-label">Profile Views</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-value">56</span>
-                        <span class="stat-label">New Followers</span>
+                        <span class="stat-value" data-value="567">0</span>
+                        <span class="stat-label">Content Interactions</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-value">89%</span>
+                        <span class="stat-value" data-value="890">0</span>
+                        <span class="stat-label">Followers</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-card performance">
+                <div class="card-header">
+                    <i class="fas fa-rocket"></i>
+                    <h3>Performance Metrics</h3>
+                </div>
+                <div class="card-content">
+                    <div class="stat-item">
+                        <span class="stat-value" data-value="85">0</span>
                         <span class="stat-label">Engagement Rate</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value" data-value="72">0</span>
+                        <span class="stat-label">Growth Rate</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value" data-value="95">0</span>
+                        <span class="stat-label">Content Quality</span>
                     </div>
                 </div>
             </div>
