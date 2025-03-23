@@ -3,59 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HashtaG</title>
+    <meta name="description" content="Welcome to HashTag - Your creative digital space">
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>HashTag - Home</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="images/icon-192.png">
 </head>
 <body>
+    <!-- Background -->
     <div class="background"></div>
-    
+
+    <!-- Skip to main content link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
     <nav class="navbar">
         <div class="nav-container">
-            <div class="nav-left">
-                <button class="hamburger" aria-label="Toggle menu">
-                    <span class="hamburger-box">
-                        <span class="hamburger-inner"></span>
-                    </span>
-                </button>
-                <div class="logo">
-                    <a href="index.html">
-                        <i class="fas fa-cube"></i>
-                        <span><b>HASHTAG</b></span>
-                    </a>
-                </div>
+            <div class="logo">
+                <a href="index.html">
+                    <i class="fas fa-cube"></i>
+                    <span>HASHTAG</span>
+                </a>
             </div>
-
-            <div class="nav-center">
-                <div class="search-container">
+            
+            <div class="nav-items">
+                <a href="index.html" class="active">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="what.html">
+                    <i class="fas fa-question-circle"></i>
+                    <span>What?</span>
+                </a>
+                <a href="about.html">
+                    <i class="fas fa-info-circle"></i>
+                    <span>About</span>
+                </a>
+                <a href="#" id="contact-link">
+                    <i class="fas fa-envelope"></i>
+                    <span>Contact</span>
+                </a>
+            </div>
+            
+            <a href="login.html" class="login-btn">
+                <i class="fas fa-user"></i>
+                <span>Login</span>
+            </a>
+            <div class="search-container">
+                <div class="search-stack">
                     <div class="search-box">
-                        <input type="text" id="searchInput" placeholder="Search anything..." autocomplete="off">
-                        <button class="search-icon">
+                        <input type="text" placeholder="Search anything..." aria-label="Search input">
+                        <button class="search-icon" aria-label="Search">
                             <i class="fas fa-search"></i>
                         </button>
                     </div>
-                </div>
-            </div>
-
-            <div class="nav-right">
-                <div class="nav-items">
-                    <a href="index.html" class="active">Home</a>
-                    <a href="what.html">What?</a>
-                    <a href="about.html">About</a>
-                    <a href="#" id="contact-link">Contact</a>
-                    <a href="login.html" class="login-icon">
-                        <i class="fas fa-user"></i>
-                    </a>
+                    <div class="search-suggestions" id="searchSuggestions" role="listbox" hidden>
+                        <!-- Suggestions will be dynamically populated -->
+                    </div>
                 </div>
             </div>
         </div>
     </nav>
 
-    <div class="container">
-        <div class="content">
-            <h1 class="glitch-text">Welcome to the<br>Hashtag site</br></h1>
+    <main id="main-content" class="content">
+        <div class="container">
+            <div class="hero-section">
+                <div class="hero-content">
+                    <h1 class="dynamic-text">
+                        <span class="text-layer primary">Welcome to the</span>
+                        <span class="text-layer secondary">Hashtag Site</span>
+                    </h1>
+                    <p class="hero-subtitle glitch-text">Explore. Create. Innovate.</p>
+                    <div class="hero-cta">
+                        <a href="login.html" class="cta-button primary-btn">
+                            <span>Get Started</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="#" class="cta-button secondary-btn">
+                            <span>Learn More</span>
+                            <i class="fas fa-info-circle"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    </main>
 
     <!-- About Modal -->
     <div class="modal" id="about-modal">

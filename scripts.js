@@ -606,6 +606,163 @@ if (socialButtons) {
     });
 }
 
+// Enhanced Search Functionality
+document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('searchInput');
+    const searchBox = document.querySelector('.search-box');
+    const clearSearchBtn = document.querySelector('.clear-search');
+    const suggestions = document.querySelector('.search-suggestions');
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    
+    let currentFilter = 'all';
+    let selectedSuggestionIndex = -1;
+
+    // Show/hide clear button based on input
+    searchInput.addEventListener('input', () => {
+        clearSearchBtn.hidden = !searchInput.value;
+        if (searchInput.value) {
+            showSuggestions(searchInput.value);
+        } else {
+            hideSuggestions();
+        }
+    });
+
+    // Clear search
+    clearSearchBtn?.addEventListener('click', () => {
+        searchInput.value = '';
+        clearSearchBtn.hidden = true;
+        hideSuggestions();
+        searchInput.focus();
+    });
+
+    // Handle search filters
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterBtns.forEach(b => {
+                b.classList.remove('active');
+                b.setAttribute('aria-checked', 'false');
+            });
+            btn.classList.add('active');
+            btn.setAttribute('aria-checked', 'true');
+            currentFilter = btn.dataset.filter;
+            if (searchInput.value) {
+                showSuggestions(searchInput.value);
+            }
+        });
+    });
+
+    // Keyboard navigation for suggestions
+    searchInput.addEventListener('keydown', (e) => {
+        const suggestions = document.querySelectorAll('.suggestion-item');
+        
+        switch(e.key) {
+            case 'ArrowDown':
+                e.preventDefault();
+                selectedSuggestionIndex = Math.min(selectedSuggestionIndex + 1, suggestions.length - 1);
+                updateSelectedSuggestion(suggestions);
+                break;
+            case 'ArrowUp':
+                e.preventDefault();
+                selectedSuggestionIndex = Math.max(selectedSuggestionIndex - 1, -1);
+                updateSelectedSuggestion(suggestions);
+                break;
+            case 'Enter':
+                if (selectedSuggestionIndex >= 0 && suggestions[selectedSuggestionIndex]) {
+                    e.preventDefault();
+                    selectSuggestion(suggestions[selectedSuggestionIndex].textContent);
+                }
+                break;
+            case 'Escape':
+                hideSuggestions();
+                searchInput.blur();
+                break;
+        }
+    });
+
+    // Close suggestions when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!searchBox.contains(e.target)) {
+            hideSuggestions();
+        }
+    });
+
+    function showSuggestions(query) {
+        // Simulate API call for suggestions
+        const mockSuggestions = getMockSuggestions(query, currentFilter);
+        
+        if (mockSuggestions.length > 0) {
+            suggestions.innerHTML = mockSuggestions
+                .map((item, index) => `
+                    <div class="suggestion-item" 
+                         role="option" 
+                         aria-selected="${index === selectedSuggestionIndex}"
+                         tabindex="-1">
+                        <i class="fas ${item.icon}"></i>
+                        ${item.text}
+                    </div>
+                `).join('');
+            
+            suggestions.hidden = false;
+            searchInput.setAttribute('aria-expanded', 'true');
+            
+            // Add click handlers to suggestions
+            document.querySelectorAll('.suggestion-item').forEach((item, index) => {
+                item.addEventListener('click', () => selectSuggestion(item.textContent));
+                item.addEventListener('mouseover', () => {
+                    selectedSuggestionIndex = index;
+                    updateSelectedSuggestion(document.querySelectorAll('.suggestion-item'));
+                });
+            });
+        } else {
+            hideSuggestions();
+        }
+    }
+
+    function hideSuggestions() {
+        suggestions.hidden = true;
+        searchInput.setAttribute('aria-expanded', 'false');
+        selectedSuggestionIndex = -1;
+    }
+
+    function updateSelectedSuggestion(suggestions) {
+        suggestions.forEach((s, i) => {
+            s.setAttribute('aria-selected', i === selectedSuggestionIndex);
+        });
+        
+        if (selectedSuggestionIndex >= 0) {
+            suggestions[selectedSuggestionIndex].scrollIntoView({
+                block: 'nearest'
+            });
+        }
+    }
+
+    function selectSuggestion(text) {
+        searchInput.value = text.trim();
+        hideSuggestions();
+        searchInput.focus();
+    }
+
+    function getMockSuggestions(query, filter) {
+        query = query.toLowerCase();
+        const allSuggestions = [
+            { text: 'Popular Videos', icon: 'fa-video', type: 'videos' },
+            { text: 'Latest Photos', icon: 'fa-image', type: 'photos' },
+            { text: 'Featured Blogs', icon: 'fa-blog', type: 'blogs' },
+            { text: 'Video Tutorials', icon: 'fa-graduation-cap', type: 'videos' },
+            { text: 'Photo Gallery', icon: 'fa-images', type: 'photos' },
+            { text: 'Blog Posts', icon: 'fa-newspaper', type: 'blogs' }
+        ];
+
+        return allSuggestions
+            .filter(item => {
+                const matchesQuery = item.text.toLowerCase().includes(query);
+                const matchesFilter = filter === 'all' || item.type === filter;
+                return matchesQuery && matchesFilter;
+            })
+            .slice(0, 6);
+    }
+});
+
 // Advanced Search Functionality
 document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('searchInput');
@@ -884,6 +1041,162 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+// Mobile Navigation and Search
+document.addEventListener('DOMContentLoaded', () => {
+    const hamburger = document.querySelector('.hamburger');
+    const navItems = document.querySelector('.nav-items');
+    const mobileSearchToggle = document.querySelector('.mobile-search-toggle');
+    const mobileSearchPanel = document.querySelector('.mobile-search-panel');
+    const searchInput = document.querySelector('#searchInput');
+    const mobileSearchInput = document.querySelector('#mobileSearchInput');
+    const searchSuggestions = document.querySelector('.search-suggestions');
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    
+    let currentFilter = 'all';
+    let isSearching = false;
+
+    // Hamburger menu toggle
+    if (hamburger && navItems) {
+        hamburger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            hamburger.classList.toggle('active');
+            navItems.classList.toggle('active');
+            document.body.classList.toggle('menu-open');
+
+            // Close search panel when opening menu
+            mobileSearchPanel?.classList.remove('active');
+        });
+    }
+
+    // Mobile search toggle
+    if (mobileSearchToggle && mobileSearchPanel) {
+        mobileSearchToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            mobileSearchPanel.classList.toggle('active');
+            
+            // Focus search input when opening
+            if (mobileSearchPanel.classList.contains('active')) {
+                mobileSearchInput?.focus();
+                // Close menu if open
+                hamburger?.classList.remove('active');
+                navItems?.classList.remove('active');
+                document.body.classList.remove('menu-open');
+            }
+        });
+    }
+
+    // Handle search input
+    const handleSearch = (input, isMobile = false) => {
+        if (!input) return;
+        
+        const searchValue = input.value.trim().toLowerCase();
+        if (searchValue.length < 2) {
+            searchSuggestions?.classList.remove('active');
+            return;
+        }
+
+        // Simulate search suggestions
+        const suggestions = [
+            'Popular searches...',
+            'Recent content...',
+            'Trending topics...'
+        ].filter(item => item.toLowerCase().includes(searchValue));
+
+        if (searchSuggestions && suggestions.length > 0) {
+            searchSuggestions.innerHTML = suggestions
+                .map(item => `<div class="suggestion-item">${item}</div>`)
+                .join('');
+            searchSuggestions.classList.add('active');
+        }
+    };
+
+    // Search input handlers
+    [searchInput, mobileSearchInput].forEach(input => {
+        if (!input) return;
+        
+        input.addEventListener('input', () => {
+            handleSearch(input, input === mobileSearchInput);
+        });
+
+        input.addEventListener('focus', () => {
+            isSearching = true;
+        });
+    });
+
+    // Filter buttons
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const filter = btn.dataset.filter;
+            if (filter === currentFilter) return;
+
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentFilter = filter;
+
+            // Simulate filter change
+            console.log(`Filter changed to: ${filter}`);
+        });
+    });
+
+    // Close menus when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!isSearching) {
+            const isClickInside = e.target.closest('.nav-items') || 
+                                e.target.closest('.hamburger') ||
+                                e.target.closest('.mobile-search-panel') ||
+                                e.target.closest('.mobile-search-toggle');
+
+            if (!isClickInside) {
+                hamburger?.classList.remove('active');
+                navItems?.classList.remove('active');
+                mobileSearchPanel?.classList.remove('active');
+                document.body.classList.remove('menu-open');
+                searchSuggestions?.classList.remove('active');
+            }
+        }
+        isSearching = false;
+    });
+
+    // Handle keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            hamburger?.classList.remove('active');
+            navItems?.classList.remove('active');
+            mobileSearchPanel?.classList.remove('active');
+            document.body.classList.remove('menu-open');
+            searchSuggestions?.classList.remove('active');
+        }
+    });
+
+    // Prevent body scroll when menu is open
+    const preventScroll = (e) => {
+        if (document.body.classList.contains('menu-open')) {
+            e.preventDefault();
+        }
+    };
+
+    document.body.addEventListener('touchmove', preventScroll, { passive: false });
+
+    // Handle window resize
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            if (window.innerWidth > 768) {
+                hamburger?.classList.remove('active');
+                navItems?.classList.remove('active');
+                mobileSearchPanel?.classList.remove('active');
+                document.body.classList.remove('menu-open');
+            }
+        }, 250);
+    });
+
+    // Add active class to current page link
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    const currentLink = document.querySelector(`.nav-items a[href="${currentPage}"]`);
+    currentLink?.classList.add('active');
+});
+
 // Mobile Menu Functionality
 document.addEventListener('DOMContentLoaded', () => {
     const hamburger = document.querySelector('.hamburger');
@@ -982,3 +1295,25 @@ document.addEventListener('DOMContentLoaded', () => {
         lastTap = currentTime;
     });
 });
+
+// Navbar Scroll Effect
+const navbar = document.querySelector('.navbar');
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+});
+
+// Mobile Menu Toggle
+const hamburger = document.querySelector('.hamburger');
+const navItems = document.querySelector('.nav-items');
+
+if (hamburger && navItems) {
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navItems.classList.toggle('active');
+    });
+}

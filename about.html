@@ -11,26 +11,53 @@
     <div class="background"></div>
     
     <nav class="navbar">
-        <div class="logo">
-            <i class="fas fa-cube"></i>
-            <span><b>HASHTAG</b></span>
-        </div>
-        <div class="nav-center">
-            <div class="search-box">
-                <input type="text" placeholder="Search...">
-                <i class="fas fa-search"></i>
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <i class="fas fa-cube"></i>
+                    <span>HASHTAG</span>
+                </a>
             </div>
-        </div>
-        <div class="nav-items">
-            <a href="index.html">Home</a>
-            <a href="#">What?</a>
-            <a href="about.html" class="active">About</a>
-            <a href="#" id="contact-link">Contact</a>
-            <a href="#" class="login-icon">
+            
+            <div class="nav-items">
+                <a href="index.html">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="what.html">
+                    <i class="fas fa-question-circle"></i>
+                    <span>What?</span>
+                </a>
+                <a href="about.html" class="active">
+                    <i class="fas fa-info-circle"></i>
+                    <span>About</span>
+                </a>
+                <a href="#" id="contact-link">
+                    <i class="fas fa-envelope"></i>
+                    <span>Contact</span>
+                </a>
+            </div>
+            
+            <a href="login.html" class="login-btn">
                 <i class="fas fa-user"></i>
+                <span>Login</span>
             </a>
         </div>
     </nav>
+
+    <div class="search-container">
+        <div class="search-stack">
+            <div class="search-box">
+                <input type="text" placeholder="Search anything..." aria-label="Search input">
+                <button class="search-icon" aria-label="Search">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            <div class="search-suggestions" id="searchSuggestions" role="listbox" hidden>
+                <!-- Suggestions will be dynamically populated -->
+            </div>
+        </div>
+    </div>
 
     <div class="about-page">
         <div class="about-header">
