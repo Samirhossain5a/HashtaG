@@ -1732,7 +1732,8 @@ body {
     }
 
     .nav-items a {
-        font-size: 0.85rem;
+        font-size: 0.9rem;
+        padding: 0.5rem;
     }
 
     .about-header {
@@ -2756,5 +2757,317 @@ body {
         font-size: 1.2rem;
         cursor: pointer;
         padding: 0.5rem;
+    }
+}
+
+/* Touch-friendly Improvements */
+@media (hover: none) {
+    .nav-items a,
+    .button,
+    .card {
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .nav-items a:active,
+    .button:active,
+    .card:active {
+        transform: scale(0.98);
+    }
+
+    .search-box input {
+        font-size: 16px; /* Prevent zoom on iOS */
+    }
+
+    .filter-btn {
+        padding: 8px 20px; /* Larger touch target */
+        min-height: 44px; /* iOS minimum touch target size */
+    }
+}
+
+/* Prevent body scroll when menu is open */
+body.menu-open {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+}
+
+/* Responsive Font Sizes */
+@media (max-width: 480px) {
+    .logo span {
+        font-size: 1.2rem;
+    }
+
+    .nav-items a {
+        font-size: 1.1rem;
+    }
+
+    .search-box input {
+        padding: 10px 40px 10px 15px;
+    }
+}
+
+/* Hamburger Menu */
+.hamburger {
+    display: none;
+    padding: 10px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.hamburger-box {
+    position: relative;
+    display: inline-block;
+    width: 30px;
+    height: 24px;
+}
+
+.hamburger-inner {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: var(--text-color);
+    transition: transform 0.3s ease;
+}
+
+.hamburger-inner::before,
+.hamburger-inner::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: var(--text-color);
+    transition: transform 0.3s ease;
+}
+
+.hamburger-inner::before {
+    top: -8px;
+}
+
+.hamburger-inner::after {
+    bottom: -8px;
+}
+
+/* Hamburger Animation */
+.hamburger.active .hamburger-inner {
+    transform: rotate(45deg);
+}
+
+.hamburger.active .hamburger-inner::before {
+    top: 0;
+    opacity: 0;
+}
+
+.hamburger.active .hamburger-inner::after {
+    bottom: 0;
+    transform: rotate(-90deg);
+}
+
+/* Mobile Menu Styles */
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+
+    .nav-items {
+        position: fixed;
+        top: var(--navbar-height);
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - var(--navbar-height));
+        background: rgba(var(--background-rgb), 0.95);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        padding: 2rem;
+        transition: 0.3s ease-in-out;
+        z-index: 1000;
+    }
+
+    .nav-items.active {
+        left: 0;
+    }
+
+    .nav-items a {
+        font-size: 1.2rem;
+        margin: 1rem 0;
+        padding: 0.5rem 1rem;
+        width: 100%;
+        text-align: center;
+        border-radius: 8px;
+        transition: background-color 0.3s ease;
+    }
+
+    .nav-items a:hover,
+    .nav-items a.active {
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    .search-container {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        padding: 1rem;
+        background: rgba(var(--background-rgb), 0.95);
+        backdrop-filter: blur(10px);
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+    }
+
+    .search-container.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .search-box {
+        width: 100%;
+    }
+
+    .search-filters {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .filter-btn {
+        margin: 0.25rem;
+    }
+}
+
+/* Touch-friendly Interactions */
+@media (hover: none) {
+    .card,
+    .button,
+    .nav-link {
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .hover-effect {
+        display: none;
+    }
+}
+
+/* Responsive Forms */
+.form-group {
+    margin-bottom: clamp(1rem, 3vh, 2rem);
+}
+
+input,
+textarea,
+select {
+    font-size: max(16px, 1rem); /* Prevent zoom on iOS */
+    padding: clamp(0.5rem, 2vh, 1rem);
+    width: 100%;
+}
+
+/* Responsive Cards */
+.card {
+    padding: clamp(1rem, 3vw, 2rem);
+    border-radius: clamp(0.5rem, 2vw, 1rem);
+}
+
+/* Responsive Sections */
+section {
+    padding: var(--section-spacing) 0;
+}
+
+/* Device-specific Optimizations */
+/* Large Screens */
+@media (min-width: 1200px) {
+    :root {
+        --container-padding: 2rem;
+    }
+
+    .grid {
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    }
+}
+
+/* Tablets */
+@media (max-width: 1024px) {
+    .grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+}
+
+/* Mobile Landscape */
+@media (max-width: 768px) and (orientation: landscape) {
+    .nav-items {
+        overflow-y: auto;
+    }
+
+    .hero-section {
+        min-height: 450px;
+    }
+}
+
+/* Mobile Portrait */
+@media (max-width: 480px) {
+    :root {
+        --container-padding: 1rem;
+        --font-size-h1: clamp(1.8rem, 6vw, 2.5rem);
+    }
+
+    .navbar {
+        padding: 0.5rem;
+    }
+
+    .nav-items {
+        gap: 0.5rem;
+    }
+}
+
+/* Foldable Devices */
+@media (max-width: 320px) {
+    :root {
+        --font-size-base: 0.9rem;
+    }
+
+    .navbar {
+        padding: 0.5rem;
+    }
+}
+
+/* High DPI Screens */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .image-high-dpi {
+        image-rendering: -webkit-optimize-contrast;
+    }
+}
+
+/* Dark Mode Preference */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text-color: #ffffff;
+        --background: #121212;
+    }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .no-print {
+        display: none !important;
+    }
+
+    body {
+        color: #000;
+        background: #fff;
+    }
+
+    a {
+        text-decoration: underline;
     }
 }

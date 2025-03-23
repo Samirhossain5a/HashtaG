@@ -883,3 +883,102 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+// Mobile Menu Functionality
+document.addEventListener('DOMContentLoaded', () => {
+    const hamburger = document.querySelector('.hamburger');
+    const navItems = document.querySelector('.nav-items');
+    const searchContainer = document.querySelector('.search-container');
+    const searchToggle = document.querySelector('.search-toggle');
+    
+    // Hamburger menu toggle
+    if (hamburger) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navItems.classList.toggle('active');
+            document.body.classList.toggle('menu-open');
+        });
+    }
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.nav-items') && 
+            !e.target.closest('.hamburger') && 
+            navItems.classList.contains('active')) {
+            hamburger.classList.remove('active');
+            navItems.classList.remove('active');
+            document.body.classList.remove('menu-open');
+        }
+    });
+
+    // Handle mobile search toggle
+    if (searchToggle) {
+        searchToggle.addEventListener('click', () => {
+            searchContainer.classList.toggle('active');
+            if (searchContainer.classList.contains('active')) {
+                document.querySelector('#searchInput').focus();
+            }
+        });
+    }
+
+    // Close mobile menu on window resize
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            if (window.innerWidth > 768) {
+                hamburger?.classList.remove('active');
+                navItems?.classList.remove('active');
+                document.body.classList.remove('menu-open');
+                searchContainer?.classList.remove('active');
+            }
+        }, 250);
+    });
+
+    // Handle touch events for better mobile interaction
+    const touchElements = document.querySelectorAll('.nav-items a, .button, .card');
+    touchElements.forEach(element => {
+        element.addEventListener('touchstart', function() {
+            this.classList.add('touch-active');
+        }, { passive: true });
+
+        element.addEventListener('touchend', function() {
+            this.classList.remove('touch-active');
+        }, { passive: true });
+    });
+
+    // Prevent iOS bounce effect while scrolling inside menu
+    if (navItems) {
+        let touchStartY;
+        
+        navItems.addEventListener('touchstart', (e) => {
+            touchStartY = e.touches[0].clientY;
+        }, { passive: true });
+
+        navItems.addEventListener('touchmove', (e) => {
+            const touchY = e.touches[0].clientY;
+            const scrollTop = navItems.scrollTop;
+            const scrollHeight = navItems.scrollHeight;
+            const clientHeight = navItems.clientHeight;
+
+            if (scrollTop === 0 && touchY > touchStartY) {
+                e.preventDefault();
+            }
+
+            if (scrollTop + clientHeight >= scrollHeight && touchY < touchStartY) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+    }
+
+    // Double tap prevention
+    let lastTap = 0;
+    document.addEventListener('touchend', (e) => {
+        const currentTime = new Date().getTime();
+        const tapLength = currentTime - lastTap;
+        if (tapLength < 500 && tapLength > 0) {
+            e.preventDefault();
+        }
+        lastTap = currentTime;
+    });
+});
