@@ -110,3 +110,776 @@ window.addEventListener('click', (e) => {
         closeModal(contactModal);
     }
 });
+
+// Contact Form Character Count
+document.addEventListener('DOMContentLoaded', () => {
+    const messageTextarea = document.getElementById('message');
+    const charCount = document.getElementById('charCount');
+    
+    if (messageTextarea && charCount) {
+        messageTextarea.addEventListener('input', () => {
+            const length = messageTextarea.value.length;
+            charCount.textContent = length;
+            
+            if (length > 450) {
+                charCount.style.color = '#ff9900';
+            } else if (length > 490) {
+                charCount.style.color = '#ff0000';
+            } else {
+                charCount.style.color = 'inherit';
+            }
+        });
+    }
+    
+    // Form Validation and Submission
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const submitBtn = contactForm.querySelector('.submit-btn');
+            const successMessage = document.querySelector('.form-success-message');
+            
+            // Disable submit button and show loading state
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            
+            try {
+                // Simulate form submission (replace with actual API call)
+                await new Promise(resolve => setTimeout(resolve, 2000));
+                
+                // Show success message
+                contactForm.style.display = 'none';
+                successMessage.style.display = 'block';
+                
+                // Reset form
+                contactForm.reset();
+                
+                // Hide success message and show form after 5 seconds
+                setTimeout(() => {
+                    successMessage.style.display = 'none';
+                    contactForm.style.display = 'block';
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<span>Send Message</span><i class="fas fa-paper-plane"></i>';
+                }, 5000);
+                
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<span>Send Message</span><i class="fas fa-paper-plane"></i>';
+                alert('There was an error sending your message. Please try again.');
+            }
+        });
+    }
+});
+
+// Contact Form Handling
+const contactForm = document.getElementById('contactForm');
+const formSuccessMessage = document.querySelector('.form-success-message');
+
+if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Here you would typically send the form data to your server
+        // For demo purposes, we'll just show the success message
+        contactForm.style.display = 'none';
+        formSuccessMessage.style.display = 'block';
+        
+        // Reset form after 3 seconds
+        setTimeout(() => {
+            contactForm.reset();
+            contactForm.style.display = 'block';
+            formSuccessMessage.style.display = 'none';
+        }, 3000);
+    });
+}
+
+// Chat Widget
+const chatButton = document.getElementById('chatButton');
+const chatBox = document.getElementById('chatBox');
+const closeChat = document.getElementById('closeChat');
+const chatInput = document.getElementById('chatInput');
+const sendMessage = document.getElementById('sendMessage');
+const chatMessages = document.getElementById('chatMessages');
+
+if (chatButton && chatBox) {
+    chatButton.addEventListener('click', () => {
+        chatBox.style.display = chatBox.style.display === 'none' ? 'flex' : 'none';
+    });
+
+    closeChat.addEventListener('click', () => {
+        chatBox.style.display = 'none';
+    });
+
+    function addMessage(message, isUser = false) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${isUser ? 'user' : 'bot'}`;
+        messageDiv.innerHTML = `<p>${message}</p>`;
+        chatMessages.appendChild(messageDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function handleUserMessage() {
+        const message = chatInput.value.trim();
+        if (message) {
+            addMessage(message, true);
+            chatInput.value = '';
+            
+            // Simulate bot response
+            setTimeout(() => {
+                const responses = [
+                    "Thanks for your message! I'll get back to you soon.",
+                    "I understand. Let me help you with that.",
+                    "Great question! Let me find the answer for you.",
+                    "I appreciate your patience. I'm working on your request."
+                ];
+                const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                addMessage(randomResponse);
+            }, 1000);
+        }
+    }
+
+    sendMessage.addEventListener('click', handleUserMessage);
+    chatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            handleUserMessage();
+        }
+    });
+}
+
+// Google Maps Integration
+function initMap() {
+    // Replace with your desired coordinates
+    const location = { lat: 23.8103, lng: 90.4125 }; // Example: Dhaka, Bangladesh
+    const map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 15,
+        center: location,
+        styles: [
+            {
+                "featureType": "all",
+                "elementType": "geometry",
+                "stylers": [{"color": "#242f3e"}]
+            },
+            {
+                "featureType": "all",
+                "elementType": "labels.text.stroke",
+                "stylers": [{"color": "#242f3e"}]
+            },
+            {
+                "featureType": "all",
+                "elementType": "labels.text.fill",
+                "stylers": [{"color": "#746855"}]
+            },
+            {
+                "featureType": "water",
+                "elementType": "geometry",
+                "stylers": [{"color": "#17263c"}]
+            }
+        ]
+    });
+
+    new google.maps.Marker({
+        position: location,
+        map: map,
+        title: 'Our Location'
+    });
+}
+
+// Theme Toggle Functionality
+document.addEventListener('DOMContentLoaded', () => {
+    const themeToggle = document.getElementById('themeToggle');
+    const root = document.documentElement;
+    
+    // Check for saved theme preference
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    setTheme(savedTheme);
+    
+    // Toggle theme on button click
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = root.getAttribute('data-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        setTheme(newTheme);
+    });
+    
+    function setTheme(theme) {
+        root.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        updateThemeIcon(theme);
+    }
+    
+    function updateThemeIcon(theme) {
+        const icon = themeToggle.querySelector('i');
+        if (theme === 'dark') {
+            icon.className = 'fas fa-sun';
+            themeToggle.setAttribute('aria-label', 'Switch to light theme');
+        } else {
+            icon.className = 'fas fa-moon';
+            themeToggle.setAttribute('aria-label', 'Switch to dark theme');
+        }
+    }
+});
+
+// Smooth scroll for contact link
+document.addEventListener('DOMContentLoaded', () => {
+    const contactLink = document.getElementById('contact-link');
+    
+    if (contactLink) {
+        contactLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            const contactSection = document.getElementById('contact');
+            
+            if (contactSection) {
+                // If we're not on what.html, redirect to what.html#contact
+                if (!window.location.pathname.includes('what.html')) {
+                    window.location.href = 'what.html#contact';
+                    return;
+                }
+                
+                // Smooth scroll to contact section
+                contactSection.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    }
+});
+
+// Login Modal Functionality
+const loginIcon = document.querySelector('.login-icon');
+const loginModal = document.getElementById('login-modal');
+const closeLogin = document.getElementById('close-login');
+const loginForm = document.getElementById('loginForm');
+const togglePassword = document.querySelector('.toggle-password');
+const loginPassword = document.getElementById('loginPassword');
+
+if (loginIcon && loginModal) {
+    loginIcon.addEventListener('click', (e) => {
+        e.preventDefault();
+        openModal(loginModal);
+    });
+
+    closeLogin.addEventListener('click', () => {
+        closeModal(loginModal);
+    });
+}
+
+if (togglePassword && loginPassword) {
+    togglePassword.addEventListener('click', () => {
+        const type = loginPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+        loginPassword.setAttribute('type', type);
+        togglePassword.querySelector('i').className = `fas fa-${type === 'password' ? 'eye' : 'eye-slash'}`;
+    });
+}
+
+// Enhanced Login Form Handling
+if (loginForm) {
+    loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        // Get form data
+        const email = document.getElementById('loginEmail');
+        const password = document.getElementById('loginPassword');
+        const rememberMe = document.getElementById('rememberMe');
+        
+        // Validate form
+        let isValid = true;
+        
+        if (!email.value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+            showError(email, 'Please enter a valid email');
+            isValid = false;
+        }
+        
+        if (password.value.length < 6) {
+            showError(password, 'Password must be at least 6 characters');
+            isValid = false;
+        }
+        
+        if (!isValid) return;
+        
+        // Show loading state
+        const submitBtn = loginForm.querySelector('.login-btn');
+        const originalContent = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Signing in...';
+        submitBtn.disabled = true;
+        
+        try {
+            // Simulate API call (replace with actual authentication)
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            
+            // Show success state
+            submitBtn.innerHTML = '<i class="fas fa-check"></i> Success!';
+            submitBtn.classList.add('success');
+            
+            // Save login state and time
+            localStorage.setItem('isLoggedIn', 'true');
+            localStorage.setItem('lastLogin', new Date().toISOString());
+            
+            // Redirect to dashboard
+            setTimeout(() => {
+                window.location.href = 'dashboard.html';
+            }, 1500);
+            
+        } catch (error) {
+            // Show error state
+            submitBtn.innerHTML = '<i class="fas fa-times"></i> Error';
+            submitBtn.style.background = '#ff4444';
+            
+            setTimeout(() => {
+                submitBtn.innerHTML = originalContent;
+                submitBtn.disabled = false;
+                submitBtn.style.background = '';
+            }, 2000);
+        }
+    });
+}
+
+// Social Login Functions
+function signInWithGoogle() {
+    // Initialize Google Sign-In
+    const googleConfig = {
+        client_id: 'YOUR_GOOGLE_CLIENT_ID',
+        scope: 'email profile'
+    };
+
+    // Show loading state
+    const button = event.currentTarget;
+    const originalContent = button.innerHTML;
+    button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Connecting...';
+    button.disabled = true;
+
+    // Simulate OAuth flow (replace with actual Google OAuth)
+    setTimeout(() => {
+        // Reset button and show success
+        button.innerHTML = '<i class="fas fa-check"></i> Connected!';
+        button.style.background = '#34A853';
+
+        // Save login state and time
+        localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('lastLogin', new Date().toISOString());
+
+        setTimeout(() => {
+            window.location.href = 'dashboard.html';
+        }, 1500);
+    }, 2000);
+}
+
+function signInWithFacebook() {
+    // Initialize Facebook Sign-In
+    const fbConfig = {
+        appId: 'YOUR_FACEBOOK_APP_ID',
+        cookie: true,
+        xfbml: true,
+        version: 'v12.0'
+    };
+
+    // Show loading state
+    const button = event.currentTarget;
+    const originalContent = button.innerHTML;
+    button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Connecting...';
+    button.disabled = true;
+
+    // Simulate OAuth flow (replace with actual Facebook OAuth)
+    setTimeout(() => {
+        // Reset button and show success
+        button.innerHTML = '<i class="fas fa-check"></i> Connected!';
+        button.style.background = '#4267B2';
+
+        // Save login state and time
+        localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('lastLogin', new Date().toISOString());
+
+        setTimeout(() => {
+            window.location.href = 'dashboard.html';
+        }, 1500);
+    }, 2000);
+}
+
+// Handle social login buttons
+document.addEventListener('DOMContentLoaded', () => {
+    const socialButtons = document.querySelectorAll('.social-btn');
+    if (socialButtons) {
+        socialButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                const platform = button.classList[1];
+                if (platform === 'google') {
+                    signInWithGoogle();
+                } else if (platform === 'facebook') {
+                    signInWithFacebook();
+                }
+            });
+        });
+    }
+});
+
+// Error Handling
+function showError(input, message) {
+    const formGroup = input.parentElement;
+    formGroup.classList.add('error');
+    
+    // Create error message if it doesn't exist
+    let errorMsg = formGroup.querySelector('.error-message');
+    if (!errorMsg) {
+        errorMsg = document.createElement('span');
+        errorMsg.className = 'error-message';
+        formGroup.appendChild(errorMsg);
+    }
+    errorMsg.textContent = message;
+    
+    // Remove error after 3 seconds
+    setTimeout(() => {
+        formGroup.classList.remove('error');
+        errorMsg.remove();
+    }, 3000);
+}
+
+// Update Login State
+function updateLoginState(isLoggedIn) {
+    const loginIcon = document.querySelector('.login-icon');
+    if (isLoggedIn) {
+        loginIcon.innerHTML = '<i class="fas fa-user-check"></i>';
+        loginIcon.classList.add('logged-in');
+    } else {
+        loginIcon.innerHTML = '<i class="fas fa-user"></i>';
+        loginIcon.classList.remove('logged-in');
+    }
+}
+
+// Check if user was previously logged in
+document.addEventListener('DOMContentLoaded', () => {
+    if (localStorage.getItem('isLoggedIn') === 'true') {
+        updateLoginState(true);
+    }
+});
+
+// Switch between Login and Signup
+const signupLink = document.querySelector('.signup-link');
+const loginLink = document.querySelector('.login-link');
+const signupModal = document.getElementById('signup-modal');
+
+if (signupLink && loginLink && signupModal) {
+    signupLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        closeModal(loginModal);
+        openModal(signupModal);
+    });
+    
+    loginLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        closeModal(signupModal);
+        openModal(loginModal);
+    });
+    
+    document.getElementById('close-signup').addEventListener('click', () => {
+        closeModal(signupModal);
+    });
+}
+
+// Password visibility toggle for signup form
+const signupPassword = document.getElementById('signupPassword');
+const signupTogglePassword = document.querySelector('#signupForm .toggle-password');
+
+if (signupPassword && signupTogglePassword) {
+    signupTogglePassword.addEventListener('click', () => {
+        const type = signupPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+        signupPassword.setAttribute('type', type);
+        signupTogglePassword.querySelector('i').className = `fas fa-${type === 'password' ? 'eye' : 'eye-slash'}`;
+    });
+}
+
+// Social Login Buttons
+const socialButtons = document.querySelectorAll('.social-btn');
+if (socialButtons) {
+    socialButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            // Here you would typically implement OAuth flow
+            const platform = button.classList[1];
+            if (platform === 'google') {
+                signInWithGoogle();
+            } else if (platform === 'facebook') {
+                signInWithFacebook();
+            }
+            console.log(`Attempting to login with ${platform}`);
+        });
+    });
+}
+
+// Advanced Search Functionality
+document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('searchInput');
+    const searchSuggestions = document.getElementById('searchSuggestions');
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    let currentFilter = 'all';
+    let searchTimeout;
+
+    // Sample data - replace with your actual data
+    const sampleData = {
+        videos: [
+            { title: 'Introduction to Web Development', type: 'video' },
+            { title: 'JavaScript Tutorial', type: 'video' },
+            { title: 'CSS Animation Masterclass', type: 'video' }
+        ],
+        photos: [
+            { title: 'Nature Photography', type: 'photo' },
+            { title: 'Urban Landscapes', type: 'photo' },
+            { title: 'Portrait Collection', type: 'photo' }
+        ],
+        blogs: [
+            { title: 'Web Design Trends 2025', type: 'blog' },
+            { title: 'The Future of AI', type: 'blog' },
+            { title: 'UX Design Principles', type: 'blog' }
+        ]
+    };
+
+    // Filter click handlers
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentFilter = btn.dataset.filter;
+            if (searchInput.value) {
+                handleSearch(searchInput.value);
+            }
+        });
+    });
+
+    // Search input handler
+    searchInput.addEventListener('input', (e) => {
+        clearTimeout(searchTimeout);
+        const query = e.target.value.trim();
+
+        if (query.length === 0) {
+            searchSuggestions.classList.remove('active');
+            return;
+        }
+
+        // Debounce search to improve performance
+        searchTimeout = setTimeout(() => {
+            handleSearch(query);
+        }, 300);
+    });
+
+    // Handle keyboard navigation
+    searchInput.addEventListener('keydown', (e) => {
+        const items = searchSuggestions.querySelectorAll('.suggestion-item');
+        const activeItem = searchSuggestions.querySelector('.suggestion-item.active');
+        let index = -1;
+
+        if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+            e.preventDefault();
+
+            if (activeItem) {
+                index = Array.from(items).indexOf(activeItem);
+                activeItem.classList.remove('active');
+            }
+
+            if (e.key === 'ArrowDown') {
+                index = (index + 1) % items.length;
+            } else {
+                index = index <= 0 ? items.length - 1 : index - 1;
+            }
+
+            items[index].classList.add('active');
+            items[index].scrollIntoView({ block: 'nearest' });
+        }
+
+        if (e.key === 'Enter' && activeItem) {
+            e.preventDefault();
+            window.location.href = activeItem.dataset.url;
+        }
+    });
+
+    // Close suggestions on click outside
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.search-box')) {
+            searchSuggestions.classList.remove('active');
+        }
+    });
+
+    function handleSearch(query) {
+        let results = [];
+        const allData = [...sampleData.videos, ...sampleData.photos, ...sampleData.blogs];
+        
+        // Filter based on current filter and query
+        if (currentFilter === 'all') {
+            results = allData.filter(item => 
+                item.title.toLowerCase().includes(query.toLowerCase())
+            );
+        } else {
+            results = allData.filter(item => 
+                item.type === currentFilter.slice(0, -1) && 
+                item.title.toLowerCase().includes(query.toLowerCase())
+            );
+        }
+
+        // Display results
+        displaySuggestions(results, query);
+    }
+
+    function displaySuggestions(results, query) {
+        if (results.length === 0) {
+            searchSuggestions.innerHTML = `
+                <div class="suggestion-item">
+                    <i class="fas fa-search"></i>
+                    <span>No results found</span>
+                </div>
+            `;
+        } else {
+            searchSuggestions.innerHTML = results
+                .slice(0, 5)
+                .map(item => {
+                    const highlightedTitle = highlightMatch(item.title, query);
+                    const icon = getIconForType(item.type);
+                    return `
+                        <div class="suggestion-item" data-url="#">
+                            <i class="${icon}"></i>
+                            <span>${highlightedTitle}</span>
+                        </div>
+                    `;
+                })
+                .join('');
+        }
+        searchSuggestions.classList.add('active');
+    }
+
+    function highlightMatch(text, query) {
+        const regex = new RegExp(`(${query})`, 'gi');
+        return text.replace(regex, '<span class="highlight">$1</span>');
+    }
+
+    function getIconForType(type) {
+        const icons = {
+            video: 'fas fa-video',
+            photo: 'fas fa-image',
+            blog: 'fas fa-blog'
+        };
+        return icons[type] || 'fas fa-search';
+    }
+
+    // Mobile search toggle
+    const searchToggle = document.createElement('button');
+    searchToggle.className = 'search-toggle';
+    searchToggle.innerHTML = '<i class="fas fa-search"></i>';
+    searchToggle.setAttribute('aria-label', 'Toggle search');
+
+    const navbar = document.querySelector('.navbar');
+    const searchContainer = document.querySelector('.search-container');
+
+    if (window.innerWidth <= 768) {
+        navbar.insertBefore(searchToggle, navbar.querySelector('.nav-items'));
+    }
+
+    searchToggle.addEventListener('click', () => {
+        searchContainer.classList.toggle('active');
+        searchInput.focus();
+    });
+
+    window.addEventListener('resize', () => {
+        if (window.innerWidth <= 768) {
+            if (!navbar.contains(searchToggle)) {
+                navbar.insertBefore(searchToggle, navbar.querySelector('.nav-items'));
+            }
+        } else {
+            searchToggle.remove();
+            searchContainer.classList.remove('active');
+        }
+    });
+});
+
+// Enhanced Smooth Scroll
+document.addEventListener('DOMContentLoaded', () => {
+    // Smooth scroll for all internal links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (!targetElement) return;
+
+            const navbarHeight = document.querySelector('.navbar').offsetHeight;
+            const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+            const offsetPosition = targetPosition - navbarHeight - 20;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    // Smooth scroll for navigation links
+    const navLinks = document.querySelectorAll('.nav-items a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            // Only handle internal links
+            if (this.getAttribute('href').startsWith('#')) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    const navbarHeight = document.querySelector('.navbar').offsetHeight;
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                    const offsetPosition = targetPosition - navbarHeight - 20;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        });
+    });
+
+    // Add scroll animations for elements
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    };
+
+    const scrollObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('scroll-animate-in');
+                scrollObserver.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    // Observe elements with scroll-animate class
+    document.querySelectorAll('.scroll-animate').forEach(element => {
+        element.classList.add('scroll-animate-init');
+        scrollObserver.observe(element);
+    });
+
+    // Smooth scroll restoration
+    if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+    }
+
+    // Handle back/forward navigation
+    window.addEventListener('popstate', () => {
+        const hash = window.location.hash;
+        if (hash) {
+            const targetElement = document.querySelector(hash);
+            if (targetElement) {
+                setTimeout(() => {
+                    const navbarHeight = document.querySelector('.navbar').offsetHeight;
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                    const offsetPosition = targetPosition - navbarHeight - 20;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }, 0);
+            }
+        }
+    });
+});

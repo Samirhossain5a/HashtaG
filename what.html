@@ -12,13 +12,24 @@
     
     <nav class="navbar">
         <div class="logo">
-            <i class="fas fa-cube"></i>
-            <span>HASHTAG</span>
+            <a href="index.html">
+                <i class="fas fa-cube"></i>
+                <span><b>HASHTAG</b></span>
+            </a>
         </div>
-        <div class="nav-center">
+        <div class="search-container">
             <div class="search-box">
-                <input type="text" placeholder="Search...">
-                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Search anything..." autocomplete="off">
+                <div class="search-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="search-filters">
+                    <button class="filter-btn" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="videos">Videos</button>
+                    <button class="filter-btn" data-filter="photos">Photos</button>
+                    <button class="filter-btn" data-filter="blogs">Blogs</button>
+                </div>
+                <div class="search-suggestions" id="searchSuggestions"></div>
             </div>
         </div>
         <div class="nav-items">
@@ -26,7 +37,7 @@
             <a href="what.html" class="active">What?</a>
             <a href="about.html">About</a>
             <a href="#" id="contact-link">Contact</a>
-            <a href="#" class="login-icon">
+            <a href="login.html" class="login-icon">
                 <i class="fas fa-user"></i>
             </a>
         </div>
@@ -61,7 +72,7 @@
                         <i class="fas fa-video"></i>
                     </div>
                     <h3>Content Creation</h3>
-                    <p>To happy you </p>
+                    <p>Passionate about creating engaging content and sharing stories through video editing.</p>
                 </div>
 
                 <div class="story-card">
@@ -85,18 +96,127 @@
         <div class="social-stats">
             <div class="stat-item">
                 <i class="fab fa-youtube"></i>
-                <span class="stat-number">HashtaG</span>
+                <span class="stat-number">Growing</span>
                 <span class="stat-label">YouTube Channel</span>
             </div>
             <div class="stat-item">
                 <i class="fab fa-instagram"></i>
-                <span class="stat-number">Instagram</span>
-                <span class="stat-label">make reelsr</span>
+                <span class="stat-number">Active</span>
+                <span class="stat-label">Content Creator</span>
             </div>
             <div class="stat-item">
                 <i class="fas fa-heart"></i>
                 <span class="stat-number">Passionate</span>
                 <span class="stat-label">About Editing</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <div class="contact-section" id="contact">
+        <!-- Theme Toggle Button -->
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <i class="fas fa-moon"></i>
+        </button>
+        
+        <div class="contact-container">
+            <div class="contact-form-container">
+                <h2 class="section-title">Get in Touch</h2>
+                <form id="contactForm" class="contact-form">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" required pattern="[A-Za-z ]{2,50}" title="Please enter a valid name (2-50 characters)">
+                        <label for="name">Your Name</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" required title="Please enter a valid email address">
+                        <label for="email">Your Email</label>
+                    </div>
+                    <div class="form-group">
+                        <select id="subject" name="subject" required>
+                            <option value="" disabled selected>Select a subject</option>
+                            <option value="general">General Inquiry</option>
+                            <option value="collaboration">Collaboration</option>
+                            <option value="support">Support</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" name="message" required minlength="10" maxlength="500" title="Message should be between 10 and 500 characters"></textarea>
+                        <label for="message">Your Message</label>
+                        <div class="character-count"><span id="charCount">0</span>/500</div>
+                    </div>
+                    <button type="submit" class="submit-btn">
+                        <span>Send Message</span>
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+                <div class="form-success-message" style="display: none;">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>Thank you!</h3>
+                    <p>Your message has been sent successfully. I'll get back to you soon!</p>
+                </div>
+            </div>
+
+            <div class="contact-info">
+                <div class="info-card">
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h3>Location</h3>
+                        <p>Chittagong, Bangladesh</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <h3>Email</h3>
+                        <a href="mailto:contact@hashtag.com">contact@hashtag.com</a>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        <h3>Response Time</h3>
+                        <p>Within 24 hours</p>
+                    </div>
+                </div>
+                
+                <div class="map-container">
+                    <div id="map"></div>
+                </div>
+
+                <div class="social-links-contact">
+                    <a href="https://www.youtube.com/@Hashtag-360" target="_blank" class="social-icon youtube" aria-label="YouTube">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="https://www.instagram.com/ig_hashtag_/" target="_blank" class="social-icon instagram" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.facebook.com/hashtag" target="_blank" class="social-icon facebook" aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chat Widget -->
+        <div class="chat-widget">
+            <div class="chat-button" id="chatButton">
+                <i class="fas fa-comments"></i>
+            </div>
+            <div class="chat-box" id="chatBox">
+                <div class="chat-header">
+                    <h3>Live Chat</h3>
+                    <button class="close-chat" id="closeChat">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message bot">
+                        <p>👋 Hi! How can I help you today?</p>
+                    </div>
+                </div>
+                <div class="chat-input">
+                    <input type="text" id="chatInput" placeholder="Type your message...">
+                    <button id="sendMessage">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -117,6 +237,7 @@
         <p>&copy; 2025 Hashtag . All rights reserved.</p>
     </footer>
 
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>
     <script src="scripts.js"></script>
 </body>
 </html>
