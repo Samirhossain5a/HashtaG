@@ -11,24 +11,43 @@
     <div class="background"></div>
     
     <nav class="navbar">
-        <div class="logo">
-            <i class="fas fa-cube"></i>
-            <span><b>HASHTAG</b></span>
-        </div>
-        <div class="nav-center">
-            <div class="search-box">
-                <input type="text" placeholder="Search...">
-                <i class="fas fa-search"></i>
+        <div class="nav-container">
+            <div class="nav-left">
+                <button class="hamburger" aria-label="Toggle menu">
+                    <span class="hamburger-box">
+                        <span class="hamburger-inner"></span>
+                    </span>
+                </button>
+                <div class="logo">
+                    <a href="index.html">
+                        <i class="fas fa-cube"></i>
+                        <span><b>HASHTAG</b></span>
+                    </a>
+                </div>
             </div>
-        </div>
-        <div class="nav-items">
-            <a href="#" class="active">Home</a>
-            <a href="what.html">What?</a>
-            <a href="about.html">About</a>
-            <a href="#" id="contact-link">Contact</a>
-            <a href="login.html" class="login-icon">
-                <i class="fas fa-user"></i>
-            </a>
+
+            <div class="nav-center">
+                <div class="search-container">
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="Search anything..." autocomplete="off">
+                        <button class="search-icon">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nav-right">
+                <div class="nav-items">
+                    <a href="index.html" class="active">Home</a>
+                    <a href="what.html">What?</a>
+                    <a href="about.html">About</a>
+                    <a href="#" id="contact-link">Contact</a>
+                    <a href="login.html" class="login-icon">
+                        <i class="fas fa-user"></i>
+                    </a>
+                </div>
+            </div>
         </div>
     </nav>
 
