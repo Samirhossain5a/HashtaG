@@ -6,15 +6,36 @@
     <title>Login - HashtaG</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" href="logo for head.png">
 </head>
 <body>
     <div class="background"></div>
     
     <nav class="navbar">
-        <div class="logo">
-            <a href="index.html">
-                <i class="fas fa-cube"></i>
-                <span><b>HASHTAG</b></span>
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <i class="fas fa-hashtag"></i>
+                    Hashtag
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="what.html">About</a>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="login.html" class="active">Services</a>
+            </div>
+            <div class="search-container">
+                <div class="search-box">
+                    <input type="text" placeholder="Search anything..." aria-label="Search input">
+                    <button class="search-icon" aria-label="Search">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+            <a href="login.html" class="login-btn">
+                <i class="fas fa-user"></i>
+                <span>Login</span>
             </a>
         </div>
     </nav>
@@ -80,6 +101,42 @@
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
         <i class="fas fa-moon"></i>
     </button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check login status and update dashboard link
+            const dashboardLink = document.querySelector('.nav-links a[href="dashboard.html"]');
+            if (localStorage.getItem('isLoggedIn') !== 'true') {
+                dashboardLink.classList.add('disabled');
+                dashboardLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    alert('Please log in to access the Dashboard');
+                });
+            }
+
+            // Login form submission
+            const loginForm = document.getElementById('loginForm');
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const email = document.getElementById('loginEmail').value;
+                const password = document.getElementById('loginPassword').value;
+                
+                // Simple hardcoded credentials (replace with proper backend authentication)
+                if (email === 'hashtag@example.com' && password === 'hashtag123') {
+                    // Set login state
+                    localStorage.setItem('isLoggedIn', 'true');
+                    localStorage.setItem('lastLogin', new Date().toISOString());
+                    
+                    // Redirect to dashboard
+                    window.location.href = 'dashboard.html';
+                } else {
+                    // Show error message
+                    alert('Invalid email or password');
+                }
+            });
+        });
+    </script>
 
     <script src="scripts.js"></script>
 </body>

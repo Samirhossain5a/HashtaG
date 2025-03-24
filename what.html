@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js" as="script">
+    <link rel="icon" href="logo for head.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 </head>
 <body>
@@ -21,48 +22,28 @@
         <div class="nav-container">
             <div class="logo">
                 <a href="index.html">
-                    <i class="fas fa-cube"></i>
-                    <span>HASHTAG</span>
+                    <i class="fas fa-hashtag"></i>
+                    Hashtag
                 </a>
             </div>
-            
-            <div class="nav-items">
-                <a href="index.html">
-                    <i class="fas fa-home"></i>
-                    <span>Home</span>
-                </a>
-                <a href="what.html" class="active">
-                    <i class="fas fa-question-circle"></i>
-                    <span>What?</span>
-                </a>
-                <a href="about.html">
-                    <i class="fas fa-info-circle"></i>
-                    <span>About</span>
-                </a>
-                <a href="#" id="contact-link">
-                    <i class="fas fa-envelope"></i>
-                    <span>Contact</span>
-                </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="what.html" class="active">About</a>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="login.html">Services</a>
             </div>
-            
+            <div class="search-container">
+                <div class="search-box">
+                    <input type="text" placeholder="Search anything..." aria-label="Search input">
+                    <button class="search-icon" aria-label="Search">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
             <a href="login.html" class="login-btn">
                 <i class="fas fa-user"></i>
                 <span>Login</span>
             </a>
-            
-            <div class="search-container">
-                <div class="search-stack">
-                    <div class="search-box">
-                        <input type="text" placeholder="Search anything..." aria-label="Search input">
-                        <button class="search-icon" aria-label="Search">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-                    <div class="search-suggestions" id="searchSuggestions" role="listbox" hidden>
-                        <!-- Suggestions will be dynamically populated -->
-                    </div>
-                </div>
-            </div>
         </div>
     </nav>
 
@@ -70,20 +51,20 @@
         <div class="what-page">
             <div class="profile-section">
                 <div class="profile-image">
-                    <img src="02.png" alt="Samir Hossain">
+                    <img src="021.JPG" loading="lazy" alt="samir hossain">
                 </div>
                 <h1 class="glitch-text">Samir Hossain</h1>
                 <p class="subtitle">EDITOR & Content Creator</p>
                 
-                <div class="social-links">
-                    <a href="https://www.youtube.com/@Hashtag-360" target="_blank" class="social-icon youtube" onclick="window.open(this.href, '_blank'); return true;" rel="noopener noreferrer">
+                <div class="social-links-contact">
+                    <a href="https://www.youtube.com/@Hashtag-360" target="_blank" class="social-icon youtube" aria-label="YouTube" rel="noopener noreferrer">
                         <i class="fab fa-youtube"></i>
                     </a>
-                    <a href="https://www.instagram.com/ig_hashtag_/" target="_blank" class="social-icon instagram" onclick="window.open(this.href, '_blank'); return true;" rel="noopener noreferrer">
+                    <a href="https://www.instagram.com/ig_hashtag_/" target="_blank" class="social-icon instagram" aria-label="Instagram" rel="noopener noreferrer">
                         <i class="fab fa-instagram"></i>
                     </a>
-                    <a href="https://www.facebook.com/profile.php?id=100087645611709" target="_blank" class="social-icon facebook" onclick="window.open(this.href, '_blank'); return true;" rel="noopener noreferrer">
-                        <i class="fab fa-facebook"></i>
+                    <a href="https://www.facebook.com/hashtag" target="_blank" class="social-icon facebook" aria-label="Facebook" rel="noopener noreferrer">
+                        <i class="fab fa-facebook-f"></i>
                     </a>
                 </div>
             </div>
@@ -189,9 +170,9 @@
                             <p>Chittagong, Bangladesh</p>
                         </div>
                         <div class="info-item">
-                            <i class="fas fa-envelope"></i>
-                            <h3>Email</h3>
-                            <a href="mailto:contact@hashtag.com">contact@hashtag.com</a>
+                            <i class="fas fa-paper-plane glitch-text"></i>
+                            <h3 class="neon-text">Digital Contact</h3>
+                            <a href="mailto:contact@hashtag.com" class="futuristic-link">contact@hashtag.com</a>
                         </div>
                         <div class="info-item">
                             <i class="fas fa-clock"></i>
@@ -263,6 +244,19 @@
 
         <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>
         <script src="scripts.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Check login status and update dashboard link
+                const dashboardLink = document.querySelector('.nav-links a[href="dashboard.html"]');
+                if (localStorage.getItem('isLoggedIn') !== 'true') {
+                    dashboardLink.classList.add('disabled');
+                    dashboardLink.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        alert('Please log in to access the Dashboard');
+                    });
+                }
+            });
+        </script>
     </main>
 </body>
 </html>

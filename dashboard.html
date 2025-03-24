@@ -6,6 +6,7 @@
     <title>Dashboard - HashtaG</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" href="logo for head.png">
 </head>
 <body>
     <div class="background"></div>
@@ -14,63 +15,34 @@
         <div class="nav-container">
             <div class="logo">
                 <a href="index.html">
-                    <i class="fas fa-cube"></i>
-                    <span>HASHTAG</span>
+                    <i class="fas fa-hashtag"></i>
+                    Hashtag
                 </a>
             </div>
-            
-            <div class="nav-items">
-                <a href="dashboard.html" class="active">
-                    <i class="fas fa-tachometer-alt"></i>
-                    <span>Dashboard</span>
-                </a>
-                <a href="what.html">
-                    <i class="fas fa-question-circle"></i>
-                    <span>What?</span>
-                </a>
-                <a href="about.html">
-                    <i class="fas fa-info-circle"></i>
-                    <span>About</span>
-                </a>
-                <a href="#" id="contact-link">
-                    <i class="fas fa-envelope"></i>
-                    <span>Contact</span>
-                </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="what.html">About</a>
+                <a href="dashboard.html" class="active">Dashboard</a>
+                <a href="login.html">Services</a>
             </div>
-            
-            <div class="user-section">
-                <button class="user-menu-btn">
-                    <img src="02.png" alt="Profile" class="user-avatar">
-                    <span class="user-name">Samir Hossain</span>
-                    <i class="fas fa-chevron-down"></i>
-                </button>
-                <div class="user-dropdown">
-                    <a href="#" class="dropdown-item">
-                        <i class="fas fa-user"></i>
-                        Profile
-                    </a>
-                    <a href="#" class="dropdown-item">
-                        <i class="fas fa-cog"></i>
-                        Settings
-                    </a>
-                    <a href="#" class="dropdown-item">
-                        <i class="fas fa-bell"></i>
-                        Notifications
-                        <span class="notification-badge">3</span>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a href="login.html" class="dropdown-item logout-btn">
-                        <i class="fas fa-sign-out-alt"></i>
-                        Logout
-                    </a>
+            <div class="search-container">
+                <div class="search-box">
+                    <input type="text" placeholder="Search anything..." aria-label="Search input">
+                    <button class="search-icon" aria-label="Search">
+                        <i class="fas fa-search"></i>
+                    </button>
                 </div>
             </div>
+            <a href="login.html" class="login-btn">
+                <i class="fas fa-user"></i>
+                <span>Login</span>
+            </a>
         </div>
     </nav>
 
     <div class="dashboard">
         <div class="dashboard-header">
-            <h1>Welcome to Your Dashboard</h1>
+            <h1 style="text-align: center; margin-top:5%;">Welcome to HashtaG Dashboard</h1>
             <p class="last-login">Last login: <span id="lastLoginTime">Loading...</span></p>
         </div>
 
@@ -99,12 +71,12 @@
             <div class="dashboard-card performance">
                 <div class="card-header">
                     <i class="fas fa-rocket"></i>
-                    <h3>Performance Metrics</h3>
+                    <h3>Performance</h3>
                 </div>
                 <div class="card-content">
                     <div class="stat-item">
                         <span class="stat-value" data-value="85">0</span>
-                        <span class="stat-label">Engagement Rate</span>
+                        <span class="stat-label">Rate</span>
                     </div>
                     <div class="stat-item">
                         <span class="stat-value" data-value="72">0</span>
@@ -126,22 +98,22 @@
                     <div class="activity-item">
                         <i class="fas fa-user-plus"></i>
                         <div class="activity-details">
-                            <p>New follower: John Doe</p>
+                            <p>New follower</p>
                             <span class="activity-time">2 minutes ago</span>
                         </div>
                     </div>
                     <div class="activity-item">
                         <i class="fas fa-heart"></i>
                         <div class="activity-details">
-                            <p>Your post received 50 likes</p>
-                            <span class="activity-time">1 hour ago</span>
+                            <p>post received 0 likes</p>
+                            <span class="activity-time">0 hour ago</span>
                         </div>
                     </div>
                     <div class="activity-item">
                         <i class="fas fa-comment"></i>
                         <div class="activity-details">
                             <p>New comment on your video</p>
-                            <span class="activity-time">3 hours ago</span>
+                            <span class="activity-time"> hours ago</span>
                         </div>
                     </div>
                 </div>
@@ -185,14 +157,14 @@
                         <i class="fas fa-circle"></i>
                         <div class="notification-details">
                             <p>Your account was logged in from a new device</p>
-                            <span class="notification-time">2 hours ago</span>
+                            <span class="notification-time">00 hours ago</span>
                         </div>
                     </div>
                     <div class="notification-item">
                         <i class="fas fa-circle"></i>
                         <div class="notification-details">
                             <p>Your subscription will expire soon</p>
-                            <span class="notification-time">1 day ago</span>
+                            <span class="notification-time">00 day ago</span>
                         </div>
                     </div>
                 </div>

@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="images/icon-192.png">
+    <link rel="icon" href="logo for head.png">
 </head>
 <body>
     <!-- Background -->
@@ -24,47 +25,28 @@
         <div class="nav-container">
             <div class="logo">
                 <a href="index.html">
-                    <i class="fas fa-cube"></i>
-                    <span>HASHTAG</span>
+                    <i class="fas fa-hashtag"></i>
+                    Hashtag
                 </a>
             </div>
-            
-            <div class="nav-items">
-                <a href="index.html" class="active">
-                    <i class="fas fa-home"></i>
-                    <span>Home</span>
-                </a>
-                <a href="what.html">
-                    <i class="fas fa-question-circle"></i>
-                    <span>What?</span>
-                </a>
-                <a href="about.html">
-                    <i class="fas fa-info-circle"></i>
-                    <span>About</span>
-                </a>
-                <a href="#" id="contact-link">
-                    <i class="fas fa-envelope"></i>
-                    <span>Contact</span>
-                </a>
+            <div class="nav-links">
+                <a href="index.html" class="active">Home</a>
+                <a href="what.html">About</a>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="login.html">Services</a>
             </div>
-            
+            <div class="search-container">
+                <div class="search-box">
+                    <input type="text" placeholder="Search anything..." aria-label="Search input">
+                    <button class="search-icon" aria-label="Search">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
             <a href="login.html" class="login-btn">
                 <i class="fas fa-user"></i>
                 <span>Login</span>
             </a>
-            <div class="search-container">
-                <div class="search-stack">
-                    <div class="search-box">
-                        <input type="text" placeholder="Search anything..." aria-label="Search input">
-                        <button class="search-icon" aria-label="Search">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-                    <div class="search-suggestions" id="searchSuggestions" role="listbox" hidden>
-                        <!-- Suggestions will be dynamically populated -->
-                    </div>
-                </div>
-            </div>
         </div>
     </nav>
 
@@ -82,7 +64,7 @@
                             <span>Get Started</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
-                        <a href="#" class="cta-button secondary-btn">
+                        <a href="about.html" class="cta-button secondary-btn">
                             <span>Learn More</span>
                             <i class="fas fa-info-circle"></i>
                         </a>
@@ -272,5 +254,18 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
     <script src="scripts.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check login status and update dashboard link
+            const dashboardLink = document.querySelector('.nav-links a[href="dashboard.html"]');
+            if (localStorage.getItem('isLoggedIn') !== 'true') {
+                dashboardLink.classList.add('disabled');
+                dashboardLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    alert('Please log in to access the Dashboard');
+                });
+            }
+        });
+    </script>
 </body>
 </html>
