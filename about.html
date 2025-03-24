@@ -3,15 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HashTag - About Us</title>
+    <meta name="description" content="About HashTag - Your creative digital space">
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>HashTag - About</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="images/icon-192.png">
     <link rel="icon" href="logo for head.png">
 </head>
-<body class="dark-mode">
-    <nav class="navbar">
+<body class="transparent-page">
+    <!-- Background -->
+    <div class="background"></div>
+
+    <!-- Skip to main content link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <nav class="navbar transparent">
         <div class="nav-container">
             <div class="logo">
                 <a href="index.html">
@@ -40,15 +50,15 @@
         </div>
     </nav>
 
-    <div class="about-container">
-        <section class="about-hero">
+    <div class="about-container transparent">
+        <section class="about-hero transparent">
             <div class="hero-content">
                 <h1>Empowering Connections, <br>Amplifying Voices</h1>
                 <p>HashTag is more than a platform. It's a global community where creativity, innovation, and personal expression converge.</p>
             </div>
         </section>
 
-        <section class="about-mission">
+        <section class="about-mission transparent">
             <div class="mission-grid">
                 <div class="mission-item">
                     <i class="fas fa-bullseye"></i>
@@ -68,7 +78,7 @@
             </div>
         </section>
 
-        <section class="about-values">
+        <section class="about-values transparent">
             <h2>Our Core Values</h2>
             <div class="values-grid">
                 <div class="value-card">
@@ -94,38 +104,49 @@
             </div>
         </section>
 
-        <section class="about-team">
-            <h2>Meet Our Founders</h2>
-            <div class="team-grid">
-                <div class="team-member">
-                    <img src="images/founder1.jpg" alt="Founder 1">
-                    <h4>Samir Ahmed</h4>
-                    <p>Co-Founder & CEO</p>
-                    <div class="social-links">
-                        <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-                    </div>
-                </div>
-                <div class="team-member">
-                    <img src="images/founder2.jpg" alt="Founder 2">
-                    <h4>Elena Rodriguez</h4>
-                    <p>Co-Founder & CTO</p>
-                    <div class="social-links">
-                        <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="about-contact">
+        <section class="about-contact transparent">
             <h2>Let's Connect</h2>
             <p>We're always excited to hear from our community. Whether you have a question, suggestion, or just want to say hello, reach out to us!</p>
             <a href="login.html" class="cta-button">Join HashTag</a>
         </section>
+
+        <main id="main-content" class="profile-section transparent">
+            <div class="profile-image">
+                <img src="021.JPG" alt="Samir's Profile Picture">
+            </div>
+            <h1 class="glitch-text">Samir Hossain</h1>
+            <p class="subtitle">Web Developer & Creative Technologist</p>
+            
+            <div class="social-links">
+                <a href="https://www.youtube.com/@Hashtag-360" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="social-icon youtube" 
+                   aria-label="YouTube Channel"
+                   data-platform="youtube">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="https://www.instagram.com/@ig_hashtag_" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="social-icon instagram" 
+                   aria-label="Instagram Profile"
+                   data-platform="instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.facebook.com/Samir Hossain" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="social-icon facebook" 
+                   aria-label="Facebook Profile"
+                   data-platform="facebook">
+                    <i class="fab fa-facebook"></i>
+                </a>
+            </div>
+        </main>
     </div>
 
-    <footer class="site-footer">
+    <footer class="site-footer transparent">
         <div class="footer-content">
             <div class="footer-logo">
                 <i class="fas fa-hashtag"></i>

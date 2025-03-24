@@ -1346,3 +1346,139 @@ document.addEventListener('DOMContentLoaded', () => {
     const statValues = document.querySelectorAll('.stat-value[data-value]');
     statValues.forEach(animateValue);
 });
+
+// Authentication Form Toggle and Interactions
+document.addEventListener('DOMContentLoaded', () => {
+    const toggleButtons = document.querySelectorAll('.toggle-btn');
+    const authForms = document.querySelectorAll('.auth-form');
+    const passwordToggles = document.querySelectorAll('.toggle-password');
+    const mobileBackBtn = document.querySelector('.mobile-back-btn');
+
+    // Form Toggle Functionality
+    toggleButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Remove active class from all buttons and forms
+            toggleButtons.forEach(btn => btn.classList.remove('active'));
+            authForms.forEach(form => form.classList.remove('active'));
+
+            // Add active class to clicked button and corresponding form
+            button.classList.add('active');
+            const targetForm = document.querySelector(`.auth-form.${button.dataset.form}-form`);
+            targetForm.classList.add('active');
+        });
+    });
+
+    // Password Visibility Toggle
+    passwordToggles.forEach(toggle => {
+        toggle.addEventListener('click', () => {
+            const passwordInput = toggle.previousElementSibling;
+            const icon = toggle.querySelector('i');
+
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        });
+    });
+
+    // Mobile Back Button
+    if (mobileBackBtn) {
+        mobileBackBtn.addEventListener('click', () => {
+            window.history.back();
+        });
+    }
+
+    // Form Submission Handlers
+    const loginForm = document.getElementById('loginForm');
+    const signupForm = document.getElementById('signupForm');
+
+    if (loginForm) {
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = loginForm.querySelector('input[type="email"]').value;
+            const password = loginForm.querySelector('input[type="password"]').value;
+            
+            // Basic validation
+            if (!email || !password) {
+                alert('Please fill in all fields');
+                return;
+            }
+
+            // TODO: Implement actual login logic
+            console.log('Login attempt:', { email, password });
+        });
+    }
+
+    if (signupForm) {
+        signupForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const username = signupForm.querySelector('input[type="text"]').value;
+            const email = signupForm.querySelector('input[type="email"]').value;
+            const password = signupForm.querySelector('input[type="password"]').value;
+            const confirmPassword = signupForm.querySelectorAll('input[type="password"]')[1].value;
+            const termsCheckbox = signupForm.querySelector('input[type="checkbox"]');
+
+            // Basic validation
+            if (!username || !email || !password || !confirmPassword) {
+                alert('Please fill in all fields');
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                alert('Passwords do not match');
+                return;
+            }
+
+            if (!termsCheckbox.checked) {
+                alert('Please agree to the Terms and Conditions');
+                return;
+            }
+
+            // TODO: Implement actual signup logic
+            console.log('Signup attempt:', { username, email, password });
+        });
+    }
+});
+
+// Social Media Link Tracking
+document.addEventListener('DOMContentLoaded', () => {
+    const socialLinks = document.querySelectorAll('.social-links .social-icon');
+
+    socialLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            const platform = link.classList[1]; // youtube, instagram, facebook
+            const url = link.href;
+
+            // Basic analytics tracking
+            try {
+                // You can replace this with your preferred analytics service
+                console.log(`Social Media Click: ${platform} - ${url}`);
+                
+                // Optional: Send event to analytics service
+                // Example with Google Analytics (if integrated)
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'social_click', {
+                        'event_category': 'Social Media',
+                        'event_label': platform,
+                        'transport_type': 'beacon',
+                        'event_callback': () => {
+                            window.open(url, '_blank');
+                        }
+                    });
+                } else {
+                    // Fallback if no analytics service
+                    window.open(url, '_blank');
+                }
+            } catch (error) {
+                console.error('Social media link tracking error:', error);
+                // Ensure link still works even if tracking fails
+                window.open(url, '_blank');
+            }
+        });
+    });
+});
