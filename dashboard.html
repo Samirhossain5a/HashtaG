@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - HashtaG</title>
+    <title>HashTag - Dashboard</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="images/icon-192.png">
     <link rel="icon" href="logo for head.png">
 </head>
 <body>
@@ -33,9 +35,9 @@
                     </button>
                 </div>
             </div>
-            <a href="login.html" class="login-btn">
-                <i class="fas fa-user"></i>
-                <span>Login</span>
+            <a href="login.html" class="login-btn logout-btn">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
             </a>
         </div>
     </nav>
@@ -179,8 +181,8 @@
 
     <script src="scripts.js"></script>
     <script>
-        // Check if user is logged in
         document.addEventListener('DOMContentLoaded', () => {
+            // Check if user is logged in
             if (localStorage.getItem('isLoggedIn') !== 'true') {
                 window.location.href = 'index.html';
             }
@@ -188,29 +190,35 @@
             // Update last login time
             const lastLogin = localStorage.getItem('lastLogin') || new Date().toISOString();
             document.getElementById('lastLoginTime').textContent = new Date(lastLogin).toLocaleString();
-        });
 
-        // Handle logout
-        document.querySelector('.logout-btn').addEventListener('click', (e) => {
-            e.preventDefault();
-            localStorage.removeItem('isLoggedIn');
-            localStorage.removeItem('lastLogin');
-            window.location.href = 'index.html';
-        });
+            // Logout functionality
+            document.querySelector('.logout-btn').addEventListener('click', (e) => {
+                e.preventDefault();
+                localStorage.removeItem('isLoggedIn');
+                localStorage.removeItem('lastLogin');
+                window.location.href = 'index.html';
+            });
 
-        // User menu toggle
-        const userMenuBtn = document.querySelector('.user-menu-btn');
-        const userDropdown = document.querySelector('.user-dropdown');
+            // Animate stat values
+            const statValues = document.querySelectorAll('.stat-value');
+            statValues.forEach(stat => {
+                const targetValue = parseInt(stat.dataset.value);
+                let currentValue = 0;
+                const duration = 2000; // 2 seconds
+                const increment = targetValue / (duration / 16); // 16ms is roughly one frame
 
-        userMenuBtn.addEventListener('click', () => {
-            userDropdown.classList.toggle('show');
-        });
+                const updateValue = () => {
+                    currentValue += increment;
+                    if (currentValue < targetValue) {
+                        stat.textContent = Math.round(currentValue);
+                        requestAnimationFrame(updateValue);
+                    } else {
+                        stat.textContent = targetValue;
+                    }
+                };
 
-        // Close dropdown when clicking outside
-        window.addEventListener('click', (e) => {
-            if (!e.target.closest('.user-menu')) {
-                userDropdown.classList.remove('show');
-            }
+                updateValue();
+            });
         });
     </script>
 </body>

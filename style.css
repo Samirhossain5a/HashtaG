@@ -1,3 +1,535 @@
+/* About Page Styles */
+.about-container {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+.about-hero {
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+    padding: 100px 0;
+    text-align: center;
+}
+
+.about-hero .hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.about-hero h1 {
+    font-size: 3.5rem;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.about-hero p {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.about-mission {
+    padding: 80px 0;
+    background-color: var(--bg-secondary);
+}
+
+.mission-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.mission-item {
+    text-align: center;
+    padding: 30px;
+    background-color: var(--input-bg);
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+}
+
+.mission-item:hover {
+    transform: translateY(-10px);
+}
+
+.mission-item i {
+    font-size: 3rem;
+    color: var(--accent-color);
+    margin-bottom: 20px;
+}
+
+.mission-item h3 {
+    color: var(--text-primary);
+    margin-bottom: 15px;
+}
+
+.mission-item p {
+    color: var(--text-secondary);
+}
+
+.about-values {
+    padding: 80px 0;
+    text-align: center;
+}
+
+.about-values h2 {
+    color: var(--text-primary);
+    margin-bottom: 50px;
+    font-size: 2.5rem;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.value-card {
+    background-color: var(--input-bg);
+    padding: 30px;
+    border-radius: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.value-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.value-card i {
+    font-size: 2.5rem;
+    color: var(--accent-color);
+    margin-bottom: 20px;
+}
+
+.value-card h4 {
+    color: var(--text-primary);
+    margin-bottom: 15px;
+}
+
+.value-card p {
+    color: var(--text-secondary);
+}
+
+.about-team {
+    padding: 80px 0;
+    background-color: var(--bg-secondary);
+    text-align: center;
+}
+
+.about-team h2 {
+    color: var(--text-primary);
+    margin-bottom: 50px;
+    font-size: 2.5rem;
+}
+
+.team-grid {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+
+.team-member {
+    background-color: var(--input-bg);
+    padding: 30px;
+    border-radius: 12px;
+    max-width: 300px;
+    transition: transform 0.3s ease;
+}
+
+.team-member:hover {
+    transform: translateY(-10px);
+}
+
+.team-member img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 4px solid var(--accent-color);
+}
+
+.team-member h4 {
+    color: var(--text-primary);
+    margin-bottom: 10px;
+}
+
+.team-member p {
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+}
+
+.team-member .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.team-member .social-icon {
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.team-member .social-icon:hover {
+    color: var(--accent-color);
+}
+
+.about-contact {
+    padding: 80px 0;
+    text-align: center;
+    background-color: var(--input-bg);
+}
+
+.about-contact h2 {
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    font-size: 2.5rem;
+}
+
+.about-contact p {
+    color: var(--text-secondary);
+    max-width: 700px;
+    margin: 0 auto 30px;
+}
+
+.about-contact .cta-button {
+    display: inline-block;
+    padding: 15px 40px;
+    background-color: var(--accent-color);
+    color: var(--text-primary);
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.about-contact .cta-button:hover {
+    background-color: var(--accent-hover);
+}
+
+/* Responsive Design for About Page */
+@media (max-width: 1024px) {
+    .mission-grid,
+    .values-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .team-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .mission-grid,
+    .values-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .about-hero p {
+        font-size: 1rem;
+    }
+}
+
+/* X (Twitter) Inspired Dark Mode Design */
+:root {
+    /* Dark Mode Color Palette */
+    --bg-primary: #000000;
+    --bg-secondary: #16181C;
+    --text-primary: #FFFFFF;
+    --text-secondary: #71767B;
+    --accent-color: #1D9BF0;
+    --accent-hover: #1A8CD8;
+    --border-color: #2F3336;
+    --input-bg: #212327;
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* Authentication Container */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--bg-primary);
+}
+
+.auth-wrapper {
+    background-color: var(--bg-secondary);
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 450px;
+    padding: 40px;
+    text-align: center;
+}
+
+.auth-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.auth-logo i {
+    font-size: 3rem;
+    color: var(--accent-color);
+    margin-bottom: 10px;
+}
+
+.auth-logo h1 {
+    font-size: 2rem;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+/* Form Toggle */
+.form-toggle {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.toggle-btn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.toggle-btn.active {
+    color: var(--text-primary);
+    border-bottom: 3px solid var(--accent-color);
+}
+
+/* Authentication Forms */
+.auth-forms {
+    position: relative;
+}
+
+.auth-form {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.auth-form.active {
+    display: block;
+    opacity: 1;
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 15px 50px 15px 20px;
+    background-color: var(--input-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+}
+
+.form-group i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+}
+
+.toggle-password {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+}
+
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.checkbox-container input {
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: relative;
+    height: 20px;
+    width: 20px;
+    background-color: var(--input-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+.checkbox-container:hover input ~ .checkmark {
+    background-color: var(--border-color);
+}
+
+.checkbox-container input:checked ~ .checkmark {
+    background-color: var(--accent-color);
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.checkbox-container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.checkbox-container .checkmark:after {
+    left: 7px;
+    top: 3px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.forgot-password {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 15px;
+    background-color: var(--accent-color);
+    color: var(--text-primary);
+    border: none;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: var(--accent-hover);
+}
+
+.social-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 30px 0;
+}
+
+.social-divider span {
+    padding: 0 10px;
+    color: var(--text-secondary);
+    background-color: var(--bg-secondary);
+}
+
+.social-divider::before,
+.social-divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.social-login {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-btn {
+    background-color: var(--input-bg);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.social-btn:hover {
+    background-color: var(--border-color);
+}
+
+.social-btn.google i { color: #DB4437; }
+.social-btn.apple i { color: var(--text-primary); }
+.social-btn.x-platform i { color: var(--text-primary); }
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .auth-wrapper {
+        width: 95%;
+        padding: 20px;
+    }
+
+    .form-toggle {
+        flex-direction: column;
+    }
+
+    .toggle-btn {
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+}
+
 /* Dynamic Hero Section */
 .hero-section {
     display: flex;
@@ -1819,8 +2351,6 @@ body {
     box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
 }
 
-.form-group input:focus ~ label,
-.form-group textarea:focus ~ label,
 .form-group input:valid ~ label,
 .form-group textarea:valid ~ label {
     top: -10px;

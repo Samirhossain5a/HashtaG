@@ -3,25 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About - HashtaG</title>
+    <title>HashTag - About Us</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="images/icon-192.png">
     <link rel="icon" href="logo for head.png">
 </head>
-<body>
-    <div class="background"></div>
-    
+<body class="dark-mode">
     <nav class="navbar">
         <div class="nav-container">
             <div class="logo">
                 <a href="index.html">
                     <i class="fas fa-hashtag"></i>
-                    Hashtag
+                    HashTag
                 </a>
             </div>
             <div class="nav-links">
                 <a href="index.html">Home</a>
-                <a href="what.html">About</a>
+                <a href="about.html" class="active">About</a>
                 <a href="dashboard.html">Dashboard</a>
                 <a href="login.html">Services</a>
             </div>
@@ -40,102 +40,114 @@
         </div>
     </nav>
 
-    <div class="about-page">
-        <div class="about-header">
-            <h1 class="glitch-text">About Us</h1>
-            <p class="subtitle">Discover Story</p>
-        </div>
+    <div class="about-container">
+        <section class="about-hero">
+            <div class="hero-content">
+                <h1>Empowering Connections, <br>Amplifying Voices</h1>
+                <p>HashTag is more than a platform. It's a global community where creativity, innovation, and personal expression converge.</p>
+            </div>
+        </section>
 
-        <div class="about-grid">
-            <div class="about-card">
-                <div class="card-icon">
+        <section class="about-mission">
+            <div class="mission-grid">
+                <div class="mission-item">
                     <i class="fas fa-bullseye"></i>
+                    <h3>Our Mission</h3>
+                    <p>To create a dynamic, inclusive digital space that breaks down barriers, connects diverse perspectives, and transforms how people share, learn, and grow together.</p>
                 </div>
-                <h2>Our Mission</h2>
-                <p>To update our website</p>
-            </div>
-
-            <div class="about-card">
-                <div class="card-icon">
-                    <i class="fas fa-chart-line"></i>
-                </div>
-                <h2>Our Vision</h2>
-                <p>this is our first website</p>
-            </div>
-
-            <div class="about-card">
-                <div class="card-icon">
+                <div class="mission-item">
                     <i class="fas fa-users"></i>
+                    <h3>Community First</h3>
+                    <p>We believe in the power of community. Our platform is designed to foster meaningful interactions, support personal growth, and celebrate individual uniqueness.</p>
                 </div>
-                <h2>Our Team</h2>
-                <p>There is only one person in our Team.<br>This is samir hossain.</br></p>
-            </div>
-
-            <div class="about-card">
-                <div class="card-icon">
-                    <i class="fas fa-cogs"></i>
+                <div class="mission-item">
+                    <i class="fas fa-globe"></i>
+                    <h3>Global Reach</h3>
+                    <p>From local creators to global influencers, HashTag provides a universal platform that transcends geographical and cultural boundaries.</p>
                 </div>
-                <h2>Our Approach</h2>
-                <p>Nothing</p>
             </div>
-        </div>
+        </section>
 
-        <div class="about-stats">
-            <div class="stat-item">
-                <span class="stat-number">0+</span>
-                <span class="stat-label">Years Experience</span>
+        <section class="about-values">
+            <h2>Our Core Values</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h4>Privacy & Security</h4>
+                    <p>Your data is sacred. We implement cutting-edge security measures to protect your digital identity.</p>
+                </div>
+                <div class="value-card">
+                    <i class="fas fa-heart"></i>
+                    <h4>Authenticity</h4>
+                    <p>We champion genuine connections and real conversations, free from artificial filters.</p>
+                </div>
+                <div class="value-card">
+                    <i class="fas fa-balance-scale"></i>
+                    <h4>Fairness</h4>
+                    <p>Our algorithms and policies are designed to provide equal opportunities for all voices.</p>
+                </div>
+                <div class="value-card">
+                    <i class="fas fa-rocket"></i>
+                    <h4>Innovation</h4>
+                    <p>We continuously evolve, integrating the latest technologies to enhance user experience.</p>
+                </div>
             </div>
-            <div class="stat-item">
-                <span class="stat-number">00+</span>
-                <span class="stat-label">Projects Completed</span>
+        </section>
+
+        <section class="about-team">
+            <h2>Meet Our Founders</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="images/founder1.jpg" alt="Founder 1">
+                    <h4>Samir Ahmed</h4>
+                    <p>Co-Founder & CEO</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="images/founder2.jpg" alt="Founder 2">
+                    <h4>Elena Rodriguez</h4>
+                    <p>Co-Founder & CTO</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
             </div>
-            <div class="stat-item">
-                <span class="stat-number">0+</span>
-                <span class="stat-label">Happy</span>
-            </div>
-        </div>
+        </section>
+
+        <section class="about-contact">
+            <h2>Let's Connect</h2>
+            <p>We're always excited to hear from our community. Whether you have a question, suggestion, or just want to say hello, reach out to us!</p>
+            <a href="login.html" class="cta-button">Join HashTag</a>
+        </section>
     </div>
 
-    <!-- Contact Modal -->
-    <div class="modal" id="contact-modal">
-        <div class="modal-content">
-            <span class="close-modal" id="close-contact">&times;</span>
-            <h2>Contact Information</h2>
-            <div class="contact-info">
-                <i class="fas fa-envelope"></i>
-                <p>samirhossain5a@gmail.com</p>
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <i class="fas fa-hashtag"></i>
+                <span>HashTag</span>
             </div>
-            <div class="social-links-contact">
-                <a href="https://www.youtube.com/@Hashtag-360" target="_blank" class="social-icon youtube" aria-label="YouTube" rel="noopener noreferrer">
-                    <i class="fab fa-youtube"></i>
-                </a>
-                <a href="https://www.instagram.com/ig_hashtag_/" target="_blank" class="social-icon instagram" aria-label="Instagram" rel="noopener noreferrer">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="https://www.facebook.com/hashtag" target="_blank" class="social-icon facebook" aria-label="Facebook" rel="noopener noreferrer">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="login.html">Services</a>
+            </div>
+            <div class="footer-social">
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+            </div>
+            <div class="footer-copyright">
+                2025 HashTag. All rights reserved.
             </div>
         </div>
-    </div>
-
-    <footer class="footer">
-        <p>&copy; 2025 Hashtag . All rights reserved.</p>
     </footer>
 
     <script src="scripts.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Check login status and update dashboard link
-            const dashboardLink = document.querySelector('.nav-links a[href="dashboard.html"]');
-            if (localStorage.getItem('isLoggedIn') !== 'true') {
-                dashboardLink.classList.add('disabled');
-                dashboardLink.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    alert('Please log in to access the Dashboard');
-                });
-            }
-        });
-    </script>
 </body>
 </html>
